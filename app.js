@@ -1,12 +1,18 @@
-const servidor = require('./config/servidor')
-var app = servidor.app
-var porta = servidor.porta
+//importar as configurações do servidor
+const servidor = require("./config/servidor")
+//carregar o express
+const app = servidor.app
+//carregar a porta
+const porta = servidor.porta
 
-// rota de exemplo para testar o servidor
-app.get('/', (req, res) => {
-    res.send('Servidor funcionando em http://localhost:' + porta)
-})
+//carregar a rota index
+//const index = require('./routes/index')(app)
 
-app.listen(porta, () => {
-    console.log('http://localhost:' + porta)
-})
+//importar o consign e configurar
+const consign = require('consign')
+consign().include('./routes').into(app)
+
+//ligar o servidor
+app.listen(porta)
+
+ 
